@@ -1,0 +1,29 @@
+<h1>Novo Time</h1>
+
+<div class="well">
+  <form #formTeam="ngForm">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" minlength="4" required [(ngModel)]="team.nome" #nome="ngModel">
+      <div class="alert alert-danger" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+        <div>Digite o nome do time.</div>
+        <div>O nome deve conter no minimo 4 caracteres.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="idade">Idade:</label>
+      <input type="text" class="form-control" id="idade" name="idade" required [(ngModel)]="team.idade" #idade="ngModel">
+      <div class="alert alert-danger" *ngIf="idade.errors && (idade.dirty || idade.touched)">
+        <div>Digite a idade.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="inserir()" [disabled]="!formTeam.form.valid">
+        <i class="fa fa-save" aria-hidden="true"></i> Salvar
+      </button>
+      <a class="btn btn-secondary" [routerLink]="['/teams']">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+      </a>
+    </div>
+  </form>
+</div>
