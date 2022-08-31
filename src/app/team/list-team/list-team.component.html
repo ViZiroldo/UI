@@ -5,6 +5,7 @@
     <tr>
       <th>Nome</th>
       <th>Idade</th>
+      <th>Data Nascimento</th>
       <th class="text-center">
         <a href="#" title="Novo" alt="Novo" class="btn btn-xs btn-success" [routerLink]="['/teams/new']">
           <i class="fa fa-plus" aria-hidden="true"></i> Novo
@@ -12,13 +13,17 @@
       </th>
     </tr>
     <tr *ngFor="let team of teams">
-      <td>{{ team.nome }}</td>
+      <td>{{ team.nome! | capslock }}</td>
       <td>{{ team.idade }}</td>
+      <td>{{ team.dataNascimento! | mask: 'd0/M0/0000' }}</td>
       <td class="text-center" style="width: 300px;">
-        <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar">
+        <button type="button" class="btn btn-xs btn-info" (click)="openModal(team)">
+          <i class="fa fa-eye" aria-hidden="true"></i> Ver
+        </button>
+        <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar" [routerLink]="['/teams/edit', team.id]">
           <i class="fa fa-edit" aria-hidden="true"></i>Editar
         </a>
-        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover">
+        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="remover($event, team)">
           <i class="fa fa-times" aria-hidden="true"></i>Remover
         </a>
       </td>

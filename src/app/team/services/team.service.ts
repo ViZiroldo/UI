@@ -1,7 +1,6 @@
-import { Time } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { timestamp } from 'rxjs';
-import { Team } from 'src/app/shared/models/team.model';
+import { Team } from 'src/app/shared';
+
 
 
 const LS_CHAVE: string ="teams"

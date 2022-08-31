@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Team } from 'src/app/shared/models/team.model';
+import { Team } from 'src/app/shared';
 import { TeamService } from '../services/team.service';
 
 @Component({
