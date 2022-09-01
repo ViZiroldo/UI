@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListTeamComponent } from './list-team.component';
+import { UserModalComponent } from './user-modal.component';
 
-describe('ListTeamComponent', () => {
-  let component: ListTeamComponent;
-  let fixture: ComponentFixture<ListTeamComponent>;
+describe('UserModalComponent', () => {
+  let component: UserModalComponent;
+  let fixture: ComponentFixture<UserModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListTeamComponent ]
+      declarations: [ UserModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListTeamComponent);
+    fixture = TestBed.createComponent(UserModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
