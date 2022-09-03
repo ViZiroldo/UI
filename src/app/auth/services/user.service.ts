@@ -2,14 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  BASE_URL = "http://localhost:3000/user/";
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -21,22 +19,27 @@ export class UserService {
   ) { }
 
   getAll(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.BASE_URL, this.httpOptions);
+    const apiUrl = `${environment.apiUrl}/api/User/`;
+    return this.httpClient.get<User[]>(apiUrl, this.httpOptions);
   }
 
   getById(id: number): Observable<User> {
-    return this.httpClient.get<User>(this.BASE_URL + id, this.httpOptions);
+    const apiUrl = `${environment.apiUrl}/api/User/`;
+    return this.httpClient.get<User>(apiUrl+ id, this.httpOptions);
   }
 
   insert(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.BASE_URL, JSON.stringify(user), this.httpOptions);
+    const apiUrl = `${environment.apiUrl}/api/User/`;
+    return this.httpClient.post<User>(apiUrl, JSON.stringify(user), this.httpOptions);
   }
 
   delete(id: number): Observable<User> {
-    return this.httpClient.delete<User>(this.BASE_URL + id, this.httpOptions);
+    const apiUrl = `${environment.apiUrl}/api/User/`;
+    return this.httpClient.delete<User>(apiUrl + id, this.httpOptions);
   }
 
   update(user: User): Observable<User> {
-    return this.httpClient.put<User>(this.BASE_URL + user.id, JSON.stringify(user), this.httpOptions);
+    const apiUrl = `${environment.apiUrl}/api/User/`;
+    return this.httpClient.put<User>(apiUrl + user.id, JSON.stringify(user), this.httpOptions);
   }
 }

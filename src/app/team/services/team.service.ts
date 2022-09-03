@@ -1,50 +1,45 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Team } from 'src/app/shared';
-
-
-
-const LS_CHAVE: string ="teams"
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-
-  constructor() { }
-
-  listarTodos(): Team[] {
-    const times = localStorage[LS_CHAVE];
-    return times ? JSON.parse(times) : [];
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
 
-  inserir(team: Team): void {
-    const times = this.listarTodos();
-    team.id = new Date().getTime();
-    times.push(team);
-    localStorage[LS_CHAVE] = JSON.stringify(times);
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  getAll(): Observable<Team[]> {
+    const apiUrl = `${environment.apiUrl}/api/Team/`;
+    return this.httpClient.get<Team[]>(apiUrl, this.httpOptions);
   }
 
-  buscarPorId(id : number): Team | undefined {
-     const times: Team[] = this.listarTodos();
-     return times.find( times => times.id === id);
+  getById(id: number): Observable<Team> {
+    const apiUrl = `${environment.apiUrl}/api/Team/`;
+    return this.httpClient.get<Team>(apiUrl+ id, this.httpOptions);
   }
 
-  atualizar(team: Team): void {
-    const times: Team[] = this.listarTodos();
-
-    times.forEach(
-      (obj, index, objs) => {
-        if (team.id === obj.id) {
-          objs[index] = team;
-        }
-      }
-    );
-    localStorage[LS_CHAVE] = JSON.stringify(times);
+  insert(team: Team): Observable<Team> {
+    const apiUrl = `${environment.apiUrl}/api/Team/`;
+    return this.httpClient.post<Team>(apiUrl, JSON.stringify(team), this.httpOptions);
   }
 
-  remover(id: number): void {
-    let times: Team[] = this.listarTodos();
-    times = times.filter( team => team.id !== id);
-    localStorage[LS_CHAVE] = JSON.stringify(times);
+  delete(id: number): Observable<Team> {
+    const apiUrl = `${environment.apiUrl}/api/Team/`;
+    return this.httpClient.delete<Team>(apiUrl + id, this.httpOptions);
+  }
+
+  update(team: Team): Observable<Team> {
+    const apiUrl = `${environment.apiUrl}/api/Team/`;
+    return this.httpClient.put<Team>(apiUrl + team.id, JSON.stringify(team), this.httpOptions);
   }
 }

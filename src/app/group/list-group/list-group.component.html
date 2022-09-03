@@ -1,1 +1,33 @@
-<p>list-group works!</p>
+<h1>Grupos</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <tbody>
+    <tr>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Função</th>
+      <th class="text-center">
+        <a href="#" title="Novo" alt="Novo" class="btn btn-xs btn-success" [routerLink]="['/players/new']">
+          <i class="fa fa-plus" aria-hidden="true"></i> Novo
+        </a>
+      </th>
+    </tr>
+    <tr *ngFor="let group of groups">
+      <td>{{ group.nome }}</td>
+      <td>{{ group.idade }}</td>
+      <td>{{ group.idFuncao }}</td>
+      <td class="text-center" style="width: 300px;">
+        <!-- <button type="button" class="btn btn-xs btn-info" (click)="openModal(user)">
+          <i class="fa fa-eye" aria-hidden="true"></i> Ver
+        </button> -->
+        <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar" [routerLink]="['/players/edit', group.id]">
+          <i class="fa fa-edit" aria-hidden="true"></i>Editar
+        </a>
+        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="delete($event, group)">
+          <i class="fa fa-times" aria-hidden="true"></i>Remover
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="groups.length === 0">Nenhum usuario cadastrado.</p>

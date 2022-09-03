@@ -18,23 +18,37 @@ export class ListTeamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.teams = this.listarTodos();
+    this.teams = [];
+    this.getAll();
   }
 
-  listarTodos(): Team[] {
-    return this.teamService.listarTodos();
+  getAll(): Team[] {
+    this.teamService.getAll().subscribe({
+      next: (data: Team[]) => {
+        if (data == null) {
+          this.teams = [];
+        }
+        else {
+          this.teams = data;
+        }
+      }
+    });
+    return this.teams;
   }
 
-  remover($event: any, team: Team): void {
+  delete($event: any, team: Team): void {
     $event.preventDefault();
-    if(confirm(`Deseja realmente remover a pessoa ${team.nome}?`)) {
-      this.teamService.remover(team.id!);
-      this.teams = this.listarTodos();
+    if (confirm('Deseja realmente remover o usuario "' + team.nome + '"?')) {
+      this.teamService.delete(team.id!).subscribe({
+        complete:() => {
+          this.getAll();
+        }
+      });
     }
   }
 
   openModal(team: Team) {
     const modalRef = this.modalService.open(TeamModalComponent);
-    modalRef.componentInstance.team = team;
+    modalRef.componentInstance.user = team;
   }
 }

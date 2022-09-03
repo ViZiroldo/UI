@@ -8,19 +8,19 @@
     <div *ngIf="userLogged.perfil === 'ADMIN' || userLogged.perfil === 'GERENTE' || userLogged.perfil === 'FUNC' " class="navbar-collapse collapsed justify-content-between" id="navbarContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngIf="userLogged.perfil === 'ADMIN'">
-          <a class="nav-link" href="#" routerLink="/tournament">Tournament</a>
+          <a class="nav-link" href="#" routerLink="/tournament">Torneio</a>
         </li>
         <li class="nav-item"  *ngIf="userLogged.perfil === 'ADMIN'">
           <a class="nav-link" href="#" routerLink="/teams">Times</a>
         </li>
         <li class="nav-item"  *ngIf="userLogged.perfil === 'ADMIN'">
-          <a class="nav-link" href="#" routerLink="/players">Players</a>
+          <a class="nav-link" href="#" routerLink="/players">Jogadores</a>
         </li>
         <li class="nav-item"  *ngIf="userLogged.perfil === 'ADMIN'">
           <a class="nav-link" href="#" routerLink="/groups">Grupos</a>
         </li>
         <li class="nav-item"  *ngIf="userLogged.perfil === 'ADMIN'">
-          <a class="nav-link" href="#" routerLink="/matchs">Matchs</a>
+          <a class="nav-link" href="#" routerLink="/matchs">Partidas</a>
         </li>
         <li class="nav-item"  *ngIf="userLogged.perfil === 'ADMIN'">
           <a class="nav-link" href="#" routerLink="/users">Usuarios</a>

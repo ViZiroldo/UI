@@ -23,7 +23,7 @@
         <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar" [routerLink]="['/teams/edit', team.id]">
           <i class="fa fa-edit" aria-hidden="true"></i>Editar
         </a>
-        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="remover($event, team)">
+        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="delete($event, team)">
           <i class="fa fa-times" aria-hidden="true"></i>Remover
         </a>
       </td>
