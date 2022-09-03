@@ -1,48 +1,42 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Player } from 'src/app/shared';
-
-const LS_CHAVE: string ="players"
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
 
-  constructor() { }
+  BASE_URL = "http://localhost:3000/user/";
 
-  listarTodos(): Player[] {
-    const players = localStorage[LS_CHAVE];
-    return players ? JSON.parse(players) : [];
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
 
-  inserir(player: Player): void {
-    const players = this.listarTodos();
-    player.id = new Date().getTime();
-    players.push(player);
-    localStorage[LS_CHAVE] = JSON.stringify(players);
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  getAll(): Observable<Player[]> {
+    return this.httpClient.get<Player[]>(this.BASE_URL, this.httpOptions);
   }
 
-  buscarPorId(id : number): Player | undefined {
-     const players: Player[] = this.listarTodos();
-     return players.find( players => players.id === id);
+  getById(id: number): Observable<Player> {
+    return this.httpClient.get<Player>(this.BASE_URL + id, this.httpOptions);
   }
 
-  atualizar(player: Player): void {
-    const players: Player[] = this.listarTodos();
-
-    players.forEach(
-      (obj, index, objs) => {
-        if (player.id === obj.id) {
-          objs[index] = player;
-        }
-      }
-    );
-    localStorage[LS_CHAVE] = JSON.stringify(players);
+  insert(player: Player): Observable<Player> {
+    return this.httpClient.post<Player>(this.BASE_URL, JSON.stringify(player), this.httpOptions);
   }
 
-  remover(id: number): void {
-    let players: Player[] = this.listarTodos();
-    players = players.filter( player => player.id !== id);
-    localStorage[LS_CHAVE] = JSON.stringify(players);
+  delete(id: number): Observable<Player> {
+    return this.httpClient.delete<Player>(this.BASE_URL + id, this.httpOptions);
+  }
+
+  update(player: Player): Observable<Player> {
+    return this.httpClient.put<Player>(this.BASE_URL + player.id, JSON.stringify(player), this.httpOptions);
   }
 }

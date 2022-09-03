@@ -18,24 +18,37 @@ export class ListPlayerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.players = this.listarTodos();
+    this.players = [];
+    this.getAll();
   }
 
-  listarTodos(): Player[] {
-    return this.playerService.listarTodos();
+  getAll(): Player[] {
+    this.playerService.getAll().subscribe({
+      next: (data: Player[]) => {
+        if (data == null) {
+          this.players = [];
+        }
+        else {
+          this.players = data;
+        }
+      }
+    });
+    return this.players;
   }
 
-  remover($event: any, player: Player): void {
+  delete($event: any, player: Player): void {
     $event.preventDefault();
-    if(confirm(`Deseja realmente remover a pessoa ${player.nome}?`)) {
-      this.playerService.remover(player.id!);
-      this.players = this.listarTodos();
+    if (confirm('Deseja realmente remover o player "' + player.nome + '"?')) {
+      this.playerService.delete(player.id!).subscribe({
+        complete:() => {
+          this.getAll();
+        }
+      });
     }
   }
 
-
-  // openModal(player: Player) {
+  // openModal(user: User) {
   //   const modalRef = this.modalService.open(UserModalComponent);
-  //   modalRef.componentInstance.player = player;
+  //   modalRef.componentInstance.user = user;
   // }
 }

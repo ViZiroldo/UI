@@ -1,7 +1,7 @@
 export class Tournament {
   constructor(
     public id?: number,
-    public nomeTorneio?: string,
+    public nome?: string,
     public ativo?: boolean,
     public premiacao?: number,
     public totalParticipantes?: number,

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FunctionComponent } from './function.component';
+import { ListFunctionComponent } from './list-function/list-function.component';
+import { InsertEditFunctionComponent } from './insert-edit-function/insert-edit-function.component';
 
 
 
 @NgModule({
   declarations: [
-    FunctionComponent
+    ListFunctionComponent,
+    InsertEditFunctionComponent
   ],
   imports: [
     CommonModule

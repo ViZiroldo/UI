@@ -30,7 +30,7 @@ isLoading!: boolean;
     this.isNewUser = !this.id;
 
     if (!this.isNewUser) {
-      this.userService.buscarPorId(+this.id).subscribe(
+      this.userService.getById(+this.id).subscribe(
         user => {
           this.user = user;
           this.user.nome = "";
@@ -43,7 +43,7 @@ isLoading!: boolean;
     this.isLoading = true;
     if (this.formUser.form.valid) {
       if (this.isNewUser) {
-        this.userService.inserir(this.user).subscribe(
+        this.userService.insert(this.user).subscribe(
           user => {
             this.isLoading = false;
             this.router.navigate(["/users"]);
@@ -52,7 +52,7 @@ isLoading!: boolean;
       }
     }
     else {
-      this.userService.alterar(this.user).subscribe(
+      this.userService.update(this.user).subscribe(
         user => {
           this.isLoading = false;
           this.router.navigate(["/users"]);
@@ -61,5 +61,4 @@ isLoading!: boolean;
     }
     this.isLoading = false;
   }
-
 }

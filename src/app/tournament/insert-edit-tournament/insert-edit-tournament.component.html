@@ -1,0 +1,59 @@
+<h1 *ngIf="isNewTournament">Novo Usuario</h1>
+<h1 *ngIf="!isNewTournament">Editar Usuario</h1>
+
+<div class="well">
+  <form #formTeam="ngForm">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" minlength="4" required [(ngModel)]="tournament.nome" #nome="ngModel">
+      <div class="alert alert-danger" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+        <div>Digite o nome do time.</div>
+        <div>O nome deve conter no minimo 4 caracteres.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="premiacao">Premiação:</label>
+      <input type="text" class="form-control" id="premiacao" name="premiacao" required [(ngModel)]="tournament.premiacao" #premiacao="ngModel">
+      <div class="alert alert-danger" *ngIf="premiacao.errors && (premiacao.dirty || premiacao.touched)">
+        <div>Digite o premiação.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="participantes">Qtd Total Participantes:</label>
+      <input type="text" class="form-control" id="participantes" name="participantes" required [(ngModel)]="tournament.totalParticipantes" #participantes="ngModel">
+      <div class="alert alert-danger" *ngIf="participantes.errors && (participantes.dirty || participantes.touched)">
+        <div>Digite a senha.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="grupo">Qtd Total Grupos:</label>
+      <input type="text" class="form-control" id="grupo" name="grupo" required [(ngModel)]="tournament.totalGrupo" #grupo="ngModel">
+      <div class="alert alert-danger" *ngIf="grupo.errors && (grupo.dirty || grupo.touched)">
+        <div>Digite a senha.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dataInicio">Data de Inicio:</label>
+      <input type="text" class="form-control" id="dataInicio" name="dataInicio" required [(ngModel)]="tournament.dataInicio" #dataInicio="ngModel">
+      <div class="alert alert-danger" *ngIf="dataInicio.errors && (dataInicio.dirty || dataInicio.touched)">
+        <div>Digite a senha.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dataFim">Data de Encerramento:</label>
+      <input type="text" class="form-control" id="dataFim" name="dataFim" required [(ngModel)]="tournament.dataFim" #dataFim="ngModel">
+      <div class="alert alert-danger" *ngIf="dataFim.errors && (dataFim.dirty || dataFim.touched)">
+        <div>Digite a senha.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="save()" [disabled]="!formTeam.form.valid">
+        <i *ngIf="!isLoading" class="fa fa-save" aria-hidden="true"></i>
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1" ></span> Salvar
+      </button>
+      <a class="btn btn-secondary" [routerLink]="['/tournament']">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+      </a>
+    </div>
+  </form>
+</div>

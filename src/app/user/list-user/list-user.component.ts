@@ -20,11 +20,11 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.users = [];
-    this.listarTodos();
+    this.getAll();
   }
 
-  listarTodos(): User[] {
-    this.userService.listarTodos().subscribe({
+  getAll(): User[] {
+    this.userService.getAll().subscribe({
       next: (data: User[]) => {
         if (data == null) {
           this.users = [];
@@ -37,12 +37,12 @@ export class ListUserComponent implements OnInit {
     return this.users;
   }
 
-  remover($event: any, user: User): void {
+  delete($event: any, user: User): void {
     $event.preventDefault();
     if (confirm('Deseja realmente remover o usuario "' + user.nome + '"?')) {
-      this.userService.remover(user.id!).subscribe({
+      this.userService.delete(user.id!).subscribe({
         complete:() => {
-          this.listarTodos();
+          this.getAll();
         }
       });
     }
@@ -52,5 +52,4 @@ export class ListUserComponent implements OnInit {
     const modalRef = this.modalService.open(UserModalComponent);
     modalRef.componentInstance.user = user;
   }
-
 }

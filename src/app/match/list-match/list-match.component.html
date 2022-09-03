@@ -1,4 +1,4 @@
-<h1>Players</h1>
+<h1>Partidas</h1>
 
 <table class="table table-striped table-bordered table-hover">
   <tbody>
@@ -12,22 +12,22 @@
         </a>
       </th>
     </tr>
-    <tr *ngFor="let player of players">
-      <td>{{ player.nome }}</td>
-      <td>{{ player.idade }}</td>
-      <td>{{ player.idFuncao }}</td>
+    <tr *ngFor="let match of matchs">
+      <td>{{ match.nome }}</td>
+      <td>{{ match.idade }}</td>
+      <td>{{ match.idFuncao }}</td>
       <td class="text-center" style="width: 300px;">
         <!-- <button type="button" class="btn btn-xs btn-info" (click)="openModal(user)">
           <i class="fa fa-eye" aria-hidden="true"></i> Ver
         </button> -->
-        <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar" [routerLink]="['/players/edit', player.id]">
+        <a href="#" class="btn btn-xs btn-info" title="Editar" alt="Editar" [routerLink]="['/players/edit', match.id]">
           <i class="fa fa-edit" aria-hidden="true"></i>Editar
         </a>
-        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="delete($event, player)">
+        <a href="#" class="btn btn-xs btn-danger" title="Remover" alt="Remover" (click)="delete($event, match)">
           <i class="fa fa-times" aria-hidden="true"></i>Remover
         </a>
       </td>
     </tr>
   </tbody>
 </table>
-<p *ngIf="players.length === 0">Nenhum usuario cadastrado.</p>
+<p *ngIf="matchs.length === 0">Nenhum usuario cadastrado.</p>

@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { AuthGuard } from "../auth/auth.guard";
-import { InserEditPlayerComponent } from "./inser-edit-player/inser-edit-player.component";
+import { InsertEditPlayerComponent } from "./insert-edit-player/insert-edit-player.component";
 import { ListPlayerComponent } from "./list-player/list-player.component";
 
 export const PlayerRoutes: Routes = [
@@ -18,7 +18,7 @@ export const PlayerRoutes: Routes = [
   },
   {
     path: 'players/new',
-    component: InserEditPlayerComponent,
+    component: InsertEditPlayerComponent,
     canActivate: [AuthGuard],
     data: {
       role: 'ADMIN'
@@ -26,7 +26,7 @@ export const PlayerRoutes: Routes = [
   },
   {
     path: 'players/edit/:id',
-    component: InserEditPlayerComponent,
+    component: InsertEditPlayerComponent,
     canActivate: [AuthGuard],
     data: {
       role: 'ADMIN'

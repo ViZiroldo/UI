@@ -1,15 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TournamentComponent } from './tournament.component';
+import { ListTournamentComponent } from './list-tournament/list-tournament.component';
+import { InsertEditTournamentComponent } from './insert-edit-tournament/insert-edit-tournament.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 
-
+export const option: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
-    TournamentComponent
+    ListTournamentComponent,
+    InsertEditTournamentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    SharedModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class TournamentModule { }

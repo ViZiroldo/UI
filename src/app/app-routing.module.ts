@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginRoutes } from './auth/auth-routing.module';
 import { AuthGuard } from './auth/auth.guard';
+import { GroupRoutes } from './group/group-routing.module';
 import { HomeComponent } from './home/home.component';
+import { MatchRoutes } from './match/match-routing.module';
 import { PlayerRoutes } from './player/player-routing.module';
+import { Group } from './shared';
 import { EditTeamComponent } from './team/edit-team/edit-team.component';
 import { InsertTeamComponent } from './team/insert-team/insert-team.component';
 import { ListTeamComponent } from './team/list-team/list-team.component';
+import { TournamentRoutes } from './tournament/tournament-routing.module';
 import { UserRoutes } from './user/user-routing.module';
 
 const routes: Routes = [
@@ -53,7 +57,10 @@ const routes: Routes = [
   },
   ...LoginRoutes,
   ...UserRoutes,
-  ...PlayerRoutes
+  ...PlayerRoutes,
+  ...TournamentRoutes,
+  ...MatchRoutes,
+  ...GroupRoutes
 ];
 
 @NgModule({

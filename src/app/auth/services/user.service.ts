@@ -20,23 +20,23 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  listarTodos(): Observable<User[]> {
+  getAll(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.BASE_URL, this.httpOptions);
   }
 
-  buscarPorId(id: number): Observable<User> {
+  getById(id: number): Observable<User> {
     return this.httpClient.get<User>(this.BASE_URL + id, this.httpOptions);
   }
 
-  inserir(user: User): Observable<User> {
+  insert(user: User): Observable<User> {
     return this.httpClient.post<User>(this.BASE_URL, JSON.stringify(user), this.httpOptions);
   }
 
-  remover(id: number): Observable<User> {
+  delete(id: number): Observable<User> {
     return this.httpClient.delete<User>(this.BASE_URL + id, this.httpOptions);
   }
 
-  alterar(user: User): Observable<User> {
+  update(user: User): Observable<User> {
     return this.httpClient.put<User>(this.BASE_URL + user.id, JSON.stringify(user), this.httpOptions);
   }
 }
